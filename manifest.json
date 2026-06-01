@@ -1,0 +1,10 @@
+{
+	"id": "pi-sidebar",
+	"name": "Pi Sidebar",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Run Pi in your sidebar.",
+	"author": "Tim Koopmans",
+	"authorUrl": "https://github.com/timkoopmans",
+	"isDesktopOnly": true
+}
