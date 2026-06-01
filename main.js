@@ -6813,7 +6813,7 @@ var TerminalView = class extends import_obsidian.ItemView {
     return "Pi";
   }
   getIcon() {
-    return "bot";
+    return "pi-symbol";
   }
   // Obsidian calls setState() with custom state from setViewState()
   async setState(state, result) {
@@ -7811,6 +7811,8 @@ var VaultTerminalPlugin = class extends import_obsidian.Plugin {
     this.pluginData = {};
   }
   async onload() {
+    // Custom Pi (π) ribbon/tab icon, Lucide stroke style (viewBox 0 0 100 100)
+    (0, import_obsidian.addIcon)("pi-symbol", `<g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="30" x2="84" y2="30"/><line x1="37" y1="30" x2="32" y2="80"/><line x1="66" y1="30" x2="71" y2="80"/></g>`);
     this.registerView(VIEW_TYPE, (leaf) => new TerminalView(leaf, this));
     this._trackedTerminalViews = new Set();
     this.pluginData = await this.loadData() || {};
@@ -7853,7 +7855,7 @@ var VaultTerminalPlugin = class extends import_obsidian.Plugin {
         }
       })
     );
-    const ribbonIcon = this.addRibbonIcon("bot", "New Pi Tab", () => {
+    const ribbonIcon = this.addRibbonIcon("pi-symbol", "New Pi Tab", () => {
       const now = Date.now();
       if (now - this.lastRibbonClick < 1500) return; // 1.5s throttle to prevent accidental double-clicks
       this.lastRibbonClick = now;
@@ -8017,7 +8019,7 @@ var VaultTerminalPlugin = class extends import_obsidian.Plugin {
           menu.addItem(item =>
             item
               .setTitle('Open Pi here')
-              .setIcon('bot')
+              .setIcon('pi-symbol')
               .onClick(() => {
                 const absolutePath = this.app.vault.adapter.getFullPath(file.path);
                 this.createNewTab(absolutePath);
@@ -8039,7 +8041,7 @@ var VaultTerminalPlugin = class extends import_obsidian.Plugin {
           menu.addItem(item =>
             item
               .setTitle('Send file path to Pi')
-              .setIcon('bot')
+              .setIcon('pi-symbol')
               .onClick(() => {
                 const absolutePath = `"${this.getPath(this.getVaultPath() + '/' + file.path)}" `;
                 this.sendTextToTerminal(absolutePath);
@@ -8056,7 +8058,7 @@ var VaultTerminalPlugin = class extends import_obsidian.Plugin {
           menu.addItem(item =>
             item
               .setTitle('Send selection to Pi')
-              .setIcon('bot')
+              .setIcon('pi-symbol')
               .onClick(() => {
                 const enriched = this.buildSelectionContext(editor, selection);
                 this.sendTextToTerminal(enriched);
